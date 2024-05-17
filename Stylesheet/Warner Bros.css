@@ -1,1 +1,649 @@
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Oswald', sans-serif;}
+@font-face {
+    font-family: WS;
+    src: url('../fonts/WorkSans.ttf');
+}
+
+header { 
+    text-decoration: none;
+    width: 100%; /* Corrected */
+    height: 140px;
+    margin-top: 0px;
+    position: fixed; /* Makes the header fixed */
+    top: 0; /* Aligns the header at the top */
+    left: 0; /* Aligns the header to the left */
+    right: 0; /* Ensures the header extends to the right edge */
+    background-color: rgb(209, 209, 209); /* Ensures the background color covers the header */
+    z-index: 1000; /* Ensures the header is above other content */
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+
+
+}
+
+   
+  .wrapper{
+    position: fixed;
+    top: 0;
+    /*left: -100%;*/
+    right: -100%;
+    height: 100%;
+    width: 100%;
+    background: #000000;
+    /*background: linear-gradient(90deg, #f92c78, #4114a1);*/
+    /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
+   /* background: linear-gradient(-45deg, #e3eefe 0%, #efddfb 100%);*/
+    transition: all 0.6s ease-in-out;
+  }
+  
+  
+  #active:checked ~ .wrapper{
+
+    /*left: 0;*/
+    right: 0;
+  }
+  .menu-btn{
+    position: absolute;
+    z-index: 2;
+    right: 20px;
+    /*left: 20px; */
+    top: 30px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    /*color: #fff;*/
+    /*background: linear-gradient(90deg, #f92c78, #4114a1);*/
+    /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
+   /* background: linear-gradient(-45deg, #e3eefe 0%, #efddfb 100%); */
+    transition: all 0.5s ease-in-out;
+  }
+  .menu-btn span,
+  .menu-btn:before{
+      content: "";
+      position: absolute;
+      top: calc(50% - 1px);
+      left: 30%;
+      width: 50%;
+      border-bottom: 2px solid #f0f0f0;
+      transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  .menu-btn:after{
+    content: "";
+    position: absolute;
+    top: calc(50% - 1px);
+    left: 30%;
+    width: 50%;
+    border-bottom: 2px solid #f0f0f0;
+    transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  }
+  .menu-btn:before{
+    transform: translateY(8px);
+    width: 10%;
+  }
+  .menu-btn:after{
+    transform: translateY(-8px);
+    width: 10%;
+  }
+  
+  
+  .close {
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      transition: background .6s;
+  }
+  
+  /* closing animation */
+  #active:checked + .menu-btn span {
+      transform: scaleX(0);
+  }
+  #active:checked + .menu-btn:before {
+      transform: rotate(-45deg);
+    border-color: #fff;
+  }
+  #active:checked + .menu-btn:after {
+      transform: rotate(45deg);
+    border-color: #ffffff;
+  }
+  .wrapper ul{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    height: 90%;
+    transform: translate(-50%, -50%);
+    list-style: none;
+    text-align: center;
+  }
+  .wrapper ul li{
+    
+    height: 10%;
+    margin: 15px 0;
+  }
+  .wrapper ul li a{
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: 500;
+    padding: 5px 30px;
+    color: #fff;
+    border-radius: 50px;
+    position: absolute;
+    line-height: 50px;
+    margin: 5px 30px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  .wrapper ul li a:after{
+    position: absolute;
+    content: "";
+    background: #fff;
+     /*background: linear-gradient(#14ffe9, #ffeb3b, #ff00e0);*/
+    /*background: linear-gradient(375deg, #1cc7d0, #2ede98);*/
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 50px;
+    transform: scaleY(0);
+    z-index: -1;
+    transition: transform 0.3s ease;
+  }
+  .wrapper ul li a:hover:after{
+    transform: scaleY(1);
+  }
+  .wrapper ul li a:hover{
+    color: #1a73e8;
+  }
+  input[type="checkbox"]{
+    display: none;
+  }
+  .content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    width: 100%;
+    color: #f3f3f3;
+    column-gap: 10px;
+  }
+  .content .title{
+    float: left;
+    font-size: 40px;
+    font-weight: 700;
+  }
+  .content p{
+    font-size: 35px;
+    font-weight: 600;
+  }
+  
+  #active:checked ~ .wrapper ul li a{
+    opacity: 1;
+  }
+  .wrapper ul li a{
+    transition: opacity 1.2s, transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translateX(100px);
+  }
+  #active:checked ~ .wrapper ul li a{
+      transform: none;
+      transition-timing-function: ease, cubic-bezier(.1,1.3,.3,1); /* easeOutBackを緩めた感じ */
+     transition-delay: .6s;
+    transform: translateX(-100px);
+  }
+  
+body {
+    background-color: rgb(0, 0, 0);
+    padding-top: 60px;
+    width: 100%;
+    
+    
+}
+
+.wrapper-3{
+   width: 100%;
+}
+
+h1 {
+    
+    font-family: WS;
+    font-size: 70px;
+    color: aliceblue;
+    font-weight: bolder;
+    
+}
+
+p {
+    font-family: WS;
+    font-size: 18px;
+    color: aliceblue;
+}
+
+
+main {
+    padding: 50px;
+    width: 100%;
+}
+
+.content-container {
+    display: flex;
+    align-items: start;
+    column-gap: 50px;
+    margin-top: 80px;
+    padding-right: 20px;
+    
+}
+
+.video-description a {
+  text-decoration: none;
+}
+.seperation{ 
+  float: left;
+  background-color: rgb(209, 209, 209);
+  margin-bottom: 40px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 100%;
+}
+
+.seperation h1{
+  padding-left: 20px;
+  float: left;
+  font-family: WS;
+  font-size: 25px;
+  color: rgb(0, 0, 0);
+  font-weight: bolder;
+}
+
+.seperation img{
+   height: 150px;
+   width: 150px;
+   margin-top: 15px;
+   margin-left: 540px;
+}
+
+.seperation p{
+  padding-top: 6px;
+  font-family: WS;
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+  float: right;
+  padding-right: 20px;
+}
+
+.grid-container{
+  display: flex;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  width: 100%;
+  margin-top: 0px;
+  padding-top: 0px;
+  padding-left: 0px;
+  background-color: #000000;
+  padding-bottom: 0px;
+}
+
+.grid-container h1, .grid-container p{
+  font-family: 'WS';
+  color: aliceblue;
+  padding-left: 160px;
+  justify-content: flex-start;
+}
+
+.grid-container h1{
+  font-size: 55px;
+  padding-top: 30px;
+}
+
+.grid-container p{
+  font-size: 50px;
+  padding-top: 30px;
+}
+
+
+.seperation2 h1{
+  text-align: center;
+  padding-left: 20px;
+  font-family: WS;
+  font-size: 60px;
+  color: rgb(0, 0, 0);
+  font-weight: 900;
+}
+
+.seperation2{ 
+  background-color: rgb(209, 209, 209);
+  margin-bottom: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 100%;
+  margin-top: 70px;
+}
+
+.slide-show{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin: 0 auto;
+  justify-content: center;
+  padding-left: 0px;
+  padding-bottom: 60px;
+}
+
+
+.slide-show p{
+font-family: WS;
+font-size: 30px;
+font-weight: 800;
+
+}
+
+.item video {
+  cursor: pointer; /* Change the cursor to signify this is an interactive element */
+}
+
+.item {
+  padding-left: 50px;
+  background: rgb(0, 0, 0);
+  border: 1px solid #000000;
+}
+
+.item img{
+  border-radius: 19px;
+}
+video{
+  width: 90%;
+  height: 90%
+}
+
+footer{
+  width: 100%;
+  background-image: url(Warner\ Bros\ Logo.webp);
+  background-repeat: no-repeat;
+  background-size: 10%;
+  background-position: center;
+  background-color: rgb(209, 209, 209);
+  padding: 40px;
+margin-left: 0px;
+margin-top: 10px;
+}
+
+.view-more-container {
+  text-align: center; /* Centers the button within the container */
+  margin-top: 20px; /* Adds space between the videos and the button */
+  display: flex;
+}
+
+.view-more-button {
+  padding: 10px 20px; /* Adjust padding as needed */
+  font-size: 16px; /* Adjust font size as needed */
+  cursor: pointer; /* Changes cursor to pointer when hovering over the button */
+  text-align: center; /* Ensures text within the button is centered */
+  border: none; /* Removes the default border of the button */
+  background-color: rgb(209, 209, 209); /* Example background color for the button */
+  color: rgb(0, 0, 0); /* Text color for the button */
+  border-radius: 15px; /* Gives the button rounded corners */
+  margin-left: 800px;
+}
+
+
+.footer-container{
+  display: flex;
+
+  
+}
+
+.footer-left p{
+  float: left;
+  padding-left: 0px;
+  color: #000000;
+  font-family: WS;
+  font-weight: 700;
+  font-size: 22px;
+  margin: 0; /* Removes default paragraph margins */
+}
+
+
+.footer-right p{
+  color: #000000;
+  margin-top: 0px;
+  padding-top: 0px;
+  font-family: WS;
+  font-weight: 900;
+}
+
+.footer-right{
+  float: right;
+padding-left: 700px;
+}
+
+.footer-container img{
+  width: 70px;
+  height: 70px;
+}
+
+.seperation-3{
+  padding-top: 20px;
+
+}
+
+.seperation-3 h1{
+  text-align: center;
+  padding-left: 20px;
+  font-family: WS;
+  font-size: 60px;
+  color: rgb(255, 255, 255);
+  font-weight: 900;
+}
+
+.seperation-m {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  background-color: rgb(209, 209, 209);
+  padding-top: 40px;
+  padding-bottom: 40px;
+  
+}
+.seperation-m h1{
+  color: black;
+  text-align: center;
+}
+body.movies{
+  background-color: #000000;
+}
+.wrapper-Movies {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-container{
+  height: 500px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: start;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.card {
+  width: 120px;
+  border-radius: .75rem;
+  background-size: cover;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 2rem;
+  margin: 0 30px;
+  display: flex;
+  align-items: flex-end;
+  transition: .6s cubic-bezier(.28,-0.03,0,.99);
+  box-shadow: 0px 10px 30px -5px rgba(0,0,0,0.8);
+}
+
+.card > .row {
+  color: rgb(0, 0, 0);
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.card > .row > .icon {
+  background: #223;
+  color: white;
+  border-radius: 50%;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+}
+
+
+
+.card > .row > .cs-description {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  height: 115px;
+  width: 50%;
+  opacity: 0;
+  transform: translateY(30px);
+  transition-delay: .3s;
+  transition: all .3s ease;
+}
+
+.cs-description p {
+  color: #000000;
+  padding-top: 40px;
+  padding-top: 5px;
+  font-size: 18px;
+}
+
+.cs-description h4 {
+  text-transform: uppercase;
+}
+
+input {
+  display: none;
+}
+
+input:checked + label {
+  width: 600px;
+}
+
+input:checked + label .cs-description {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.card[for="c1"] {
+  background-image: url('Images/Oc.jpeg');
+}
+.card[for="c2"] {
+  background-image: url('Images/american\ sni.jpeg');
+}
+.card[for="c3"] {
+  background-image: url('Images/joker-secuela-folie-a-deux-detalles-trama-arkham-asylum-1054610.jpg');
+}
+.card[for="c4"] {
+  background-image: url('Images/The\ Fugitive\ \(1\).jpg');
+}
+.card[for="c5"] {
+  background-image: url('Images/LEGO\ THE\ MOVIE.jpeg');
+}
+.card[for="c6"] {
+  background-image: url('Images/Death\ in\ the\ family.jpeg');
+}
+.card[for="c7"] {
+  background-image: url('Images/LEGO\ DC\ SUPER-VILLAINS\ SHAZAM!.jpeg');
+}
+.card[for="c8"] {
+  background-image: url('Images/Superman\ Red\ Son.jpeg');
+}
+.card[for="c9"] {
+  background-image: url('Images/deathstroke\ Knights\ and\ Dragons.jpeg');
+}
+.card[for="c10"] {
+  background-image: url('Images/justice\ League\ Dark\ Apokolips\ War.jpeg');
+}
+
+
+
+.seperation-Movies { 
+  background-color: rgb(0, 0, 0);
+  margin-bottom: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 100%;
+  margin-top: 70px;
+}
+
+.seperation-Movies h1{
+  text-align: center;
+  padding-left: 20px ;
+  padding-right: 20px ;
+  font-size: 60px;
+  font-family: WS;
+}
+
+.feedback-content{
+  font-family: WS;
+}
+
+.feedback-content p{
+  color: #f0f0f0;
+  font-size: 20px;
+}
+
+.feedback-content h2{
+  color: #f0f0f0;
+  font-size: 50px;
+
+}
+
+.feedback-content ul li{
+  color: #f0f0f0;
+  font-size: 20px;
+}
+
+
+.signup-link:hover {
+  text-decoration: underline; /* Adds underline on hover for better interaction visibility */
+}
+
+ul {
+  list-style-type: none; /* Removes default bullet points */
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 10px; /* Adds space between list items */
+}
+
+
+form {
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+label{
+  color: #f0f0f0;
+  font-size: 30px;
+}
+
+.video-container8 img{
+  margin-top: 40px;
+
+}
