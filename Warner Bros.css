@@ -7,7 +7,7 @@
     font-family: 'Oswald', sans-serif;}
 @font-face {
     font-family: WS;
-    src: url('../fonts/WorkSans.ttf');
+    src: url('/Fonts/WorkSans.ttf');
 }
 
 header { 
